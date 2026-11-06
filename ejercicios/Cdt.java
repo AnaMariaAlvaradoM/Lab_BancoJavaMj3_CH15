@@ -37,7 +37,70 @@
 // ============================================================
 
 public class Cdt {
+    // Creación de las 3 constantes.
 
-    // Tu código aquí
+    public static final long MONTO_MINIMO = 500_000;
+    public static final int DIAS_MINIMOS = 30;
+    public static final int DIAS_MAXIMOS = 540;
+
+    // Creación de los 3 campos privados.
+
+    private long monto;
+    private int dias;
+    private double tasaAnual;
+
+    // Constructor público
+
+    public Cdt(long monto, int dias, double tasaAnual) {
+        if (monto < MONTO_MINIMO) {
+            throw new IllegalArgumentException("El monto mínimo es $" + MONTO_MINIMO);
+        }
+        validarDias(dias); // reutilizamos la regla de los días
+        if (tasaAnual <= 0 || tasaAnual > 0.2) {
+            throw new IllegalArgumentException("La tasa debe ser mayor que 0 y máximo 0.2");
+        }
+        this.monto = monto;
+        this.dias = dias;
+        this.tasaAnual = tasaAnual;
+    }
+
+    // Getters
+
+    public long getMonto() {
+        return monto;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public double getTasaAnual() {
+        return tasaAnual;
+    }
+
+    public long calcularIntereses() {
+        return Math.round(monto * tasaAnual * dias / 360);
+    }
+
+    // Calcular los intereses por día.
+
+    public long calcularIntereses(int otrosDias) {
+        validarDias(otrosDias);
+        return Math.round(monto * tasaAnual * otrosDias / 360);
+    }
+
+    // Calcular otro plazo.
+
+    public long calcularTotalAlVencimiento() {
+        return monto + calcularIntereses();
+    }
+
+    //Método privado
+
+    private void validarDias(int dias) {
+        if (dias < DIAS_MINIMOS || dias > DIAS_MAXIMOS) {
+            throw new IllegalArgumentException("Los días deben estar entre " + DIAS_MINIMOS + " y " + DIAS_MAXIMOS);
+        }
+    }
 
 }
