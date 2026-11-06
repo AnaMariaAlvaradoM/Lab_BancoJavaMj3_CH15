@@ -6,16 +6,16 @@
 //
 // Construye la clase Titular:
 //   - Tres campos privados: nombre (String), documento (String)
-//     y celular (String).
-//   - Un constructor público Titular(String nombre, String documento).
+//     y celular (String). DONE
+//   - Un constructor público Titular(String nombre, String documento). DONE
 //     El celular NO va en el constructor: se registra después.
 //   - Reglas del constructor:
 //       · nombre null o en blanco     → IllegalArgumentException
-//       · documento null o en blanco  → IllegalArgumentException
-//   - Tres getters: getNombre(), getDocumento() y getCelular().
+//       · documento null o en blanco  → IllegalArgumentException DONE
+//   - Tres getters: getNombre(), getDocumento() y getCelular(). DONE
 //   - Un setter setCelular(String celular). Un celular colombiano
 //     tiene 10 dígitos y empieza por 3. Si es null, no tiene 10
-//     caracteres o no empieza por "3" → IllegalArgumentException
+//     caracteres o no empieza por "3" → IllegalArgumentException DONE
 //     y el celular anterior NO cambia.
 //   - El nombre y el documento NO tienen setter.
 //
@@ -35,6 +35,38 @@
 
 public class Titular {
 
-    // Tu código aquí
+    private String nombre;
+    private String documento;
+    private String celular;
 
+    public Titular(String nombre, String documento) {
+            if (nombre == null || nombre.isBlank()){
+                throw new IllegalArgumentException("El nombre no puede ir vacío");
+            }
+            this.nombre = nombre;
+
+            if (documento == null || documento.isBlank()){
+                throw new IllegalArgumentException("El documento no puede ir vacío");
+            }
+            this.documento = documento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        if (celular == null || celular.length() != 10 || !celular.startsWith("3")) {
+            throw new IllegalArgumentException("Número de teléfono inválido.");
+        }
+        this.celular = celular;
+    }
 }

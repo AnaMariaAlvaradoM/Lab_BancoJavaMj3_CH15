@@ -11,8 +11,8 @@
 //   - Tres constantes public static final:
 //       MONTO_MINIMO = 500_000 (long)
 //       DIAS_MINIMOS = 30      (int)
-//       DIAS_MAXIMOS = 540     (int)
-//   - Tres campos privados: monto (long), dias (int) y tasaAnual (double).
+//       DIAS_MAXIMOS = 540     (int)                               DONE
+//   - Tres campos privados: monto (long), dias (int) y tasaAnual (double).  DONE
 //   - Un constructor público Cdt(long monto, int dias, double tasaAnual).
 //       · monto menor que MONTO_MINIMO           → IllegalArgumentException
 //       · dias fuera de 30 a 540 (límites válidos) → IllegalArgumentException
@@ -38,6 +38,16 @@
 
 public class Cdt {
 
-    // Tu código aquí
+    public static final long MONTO_MINIMO = 500_000;
+    public static final int DIAS_MINIMOS = 30;
+    public static final int DIAS_MAXIMOS = 540;
+
+    private long monto;
+    private int dias;
+    private double tasaAnual;
+
+    public Cdt(long monto, int dias, double tasaAnual) {
+
+    }
 
 }
