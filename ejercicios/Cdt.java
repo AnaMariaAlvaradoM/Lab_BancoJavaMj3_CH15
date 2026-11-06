@@ -37,7 +37,52 @@
 // ============================================================
 
 public class Cdt {
+    //     intereses = monto × tasaAnual × días / 360   (redondeado)
+    public static final long MONTO_MINIMO = 500_000;
+    public static  final int DIAS_MINIMOS = 30;
+    public static  final int DIAS_MAXIMOS= 540;
+    private  long monto;
+    private int dias;
+    private  double tasaAnual;
 
-    // Tu código aquí
+    public Cdt(long monto, int dias, double tasaAnual) {
+        this.monto = monto;
+        this.dias = dias;
+        this.tasaAnual = tasaAnual;
+        if (monto < MONTO_MINIMO){
+            throw new IllegalArgumentException("El monto no puede ser menor");
+        }
+        if (dias < DIAS_MINIMOS || dias > DIAS_MAXIMOS){
+            throw new IllegalArgumentException("Rango de días no validos");
+        }
+        if (tasaAnual <= 0 || tasaAnual > 2){
+            throw  new IllegalArgumentException("Tasa anual fuera de los limites");
+        }
+    }
 
+    public long getMonto() {
+        return monto;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public double getTasaAnual() {
+        return tasaAnual;
+    }
+
+    public long calcularIntereses(){
+         return  intereses = monto * tasaAnual * dias / 360;
+
+    }
+
+
+//   - public long calcularIntereses()  → con los días del CDT.
+//   - public long calcularIntereses(int otrosDias) → simula otro plazo
+//     sin cambiar el CDT. Los otrosDias siguen la misma regla de 30 a 540.
+//   - public long calcularTotalAlVencimiento() → monto + intereses.
+//   - Un método private void validarDias(int dias) con la regla de los
+//     días. Úsalo en el constructor y en calcularIntereses(int), para
+//     no escribir el mismo if dos veces.
 }

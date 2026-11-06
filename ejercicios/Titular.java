@@ -35,6 +35,43 @@
 
 public class Titular {
 
-    // Tu código aquí
+    private String nombre;
+    private String documento;
+    private String celular;
 
+    public Titular(String nombre, String documento) {
+        this.nombre = nombre;
+        this.documento = documento;
+
+        if (nombre == null || nombre.isBlank()){
+            throw new IllegalArgumentException("El nombre no puede quedar vacio");
+        }
+
+        if (documento == null || documento.isBlank()){
+            throw new IllegalArgumentException("El documento no quedar vacio");
+        }
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        if (celular == null || celular.isBlank()) {
+            throw new IllegalArgumentException(("El número de celular no puede quedar vació"));
+        } else if (celular.length() != 10) {
+            throw new IllegalArgumentException("El celular debe tener 10 dígitos");
+        } else if (!celular.startsWith("3")) {
+            throw new IllegalArgumentException("El número celular ingresado no inicia en 3");
+        }
+        this.celular = celular;
+    }
 }
