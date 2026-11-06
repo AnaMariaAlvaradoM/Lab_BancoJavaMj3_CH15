@@ -7,17 +7,17 @@
 //
 // Construye la clase CuentaAhorros:
 //   - Tres campos privados: numero (String), titular (de tipo
-//     Titular) y saldo (long). El saldo empieza en 0.
+//     Titular) y saldo (long). El saldo empieza en 0.  DONE
 //   - Un campo private static int cuentasAbiertas, que cuenta
-//     cuántas cuentas se han creado con éxito.
+//     cuántas cuentas se han creado con éxito.          DONE
 //   - Un constructor público CuentaAhorros(String numero, Titular titular).
 //       · numero null o en blanco  → IllegalArgumentException
 //       · titular null             → IllegalArgumentException
 //       · Si todo está bien, suma 1 a cuentasAbiertas.
-//         (Una cuenta rechazada NO se cuenta.)
-//   - Getters: getNumero(), getTitular() y getSaldo().
-//   - Un getter public static int getCuentasAbiertas().
-//   - NO hay setSaldo.
+//         (Una cuenta rechazada NO se cuenta.)             DONE
+//   - Getters: getNumero(), getTitular() y getSaldo().  DONE
+//   - Un getter public static int getCuentasAbiertas().  DONE
+//   - NO hay setSaldo.                                    DONE
 //   - public void depositar(long valor)
 //       · valor 0 o negativo → IllegalArgumentException
 //       · si no, suma el valor al saldo.
@@ -40,6 +40,55 @@
 
 public class CuentaAhorros {
 
-    // Tu código aquí
+    private static int cuentasAbiertas = 0;
 
+    private String numero;
+    private Titular titular;
+    private long saldo = 0;
+
+    public CuentaAhorros(String numero, Titular titular) {
+        if (numero == null || numero.isBlank()) {
+            throw new IllegalArgumentException("Numero de cuenta invaido");
+        }
+        this.numero = numero;
+
+        if (titular == null) {
+            throw new IllegalArgumentException("Nombre del titular invalido.");
+        }
+        this.titular = titular;
+        cuentasAbiertas ++;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public Titular getTitular() {
+        return titular;
+    }
+
+    public long getSaldo() {
+        return saldo;
+    }
+
+    public static int getCuentasAbiertas() {
+        return cuentasAbiertas;
+    }
+
+    public void depositar(long valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Estás ingresando un valor invalido.");
+        }
+        saldo += valor;
+    }
+
+    public void retirar(long valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Estás ingresando un valor invalido.");
+        }
+        if (valor > saldo){
+            throw new IllegalArgumentException(String.format("Saldo insuficiente. Saldo: $%d, retiro: $%d", saldo, valor));
+        }
+        saldo -= valor;
+    }
 }
