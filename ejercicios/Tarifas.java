@@ -37,6 +37,34 @@
 
 public class Tarifas {
 
-    // Tu código aquí
+   public static final long COSTO_RETIRO_OTRO_BANCO = 7_000;
+   public static final long COSTO_RETIRO_ADICIONAL  = 2_000;
+   public static final  long RETIROS_GRATIS_AL_MES   = 3;
+   public static final long CUOTA_MANEJO            = 12_900 ;
+   public static final  long SALDO_SIN_CUOTA         = 1_000_000;
+
+
+   public static long getCostoRetiroAdicional(boolean cajeroPropio, int numeroDeRetiro) {
+    if (numeroDeRetiro){
+
+    }   
+    return COSTO_RETIRO_ADICIONAL;
+   }
+
+   public static float getCostoRetiroOtroBanco() {
+       return COSTO_RETIRO_OTRO_BANCO;
+   }
+
+   public static float getCuotaManejo() {
+       return CUOTA_MANEJO;
+   }
+
+   public static float getRetirosGratisAlMes() {
+       return RETIROS_GRATIS_AL_MES;
+   }
+
+   public static float getSaldoSinCuota() {
+       return SALDO_SIN_CUOTA;
+   }
 
 }

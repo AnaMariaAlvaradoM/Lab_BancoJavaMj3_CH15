@@ -25,7 +25,7 @@
 //       · valor 0 o negativo → IllegalArgumentException
 //       · valor mayor que el saldo → IllegalArgumentException con
 //         el mensaje "Saldo insuficiente. Saldo: $X, retiro: $Y"
-//       · si no, resta el valor del saldo. Retirar TODO el saldo sí se puede.
+//       · si no, resta el valor del saldo. Retirar todo el saldo sí se puede.
 //
 // Ejemplos:
 //   CuentaAhorros cuenta = new CuentaAhorros("001-458", laura);
@@ -39,7 +39,57 @@
 // ============================================================
 
 public class CuentaAhorros {
+    private String numero;
+    private Titular titular;
+    private long saldo = 0;
+    private static int cuentasAbiertas;
 
-    // Tu código aquí
+    public CuentaAhorros(String numero, Titular titular) {
+        if (numero == null || numero.isBlank()) {
+            throw new IllegalArgumentException(
+                    "El valor no puede ser nulo o esta en blanco porfavor escriba un numero");
+        }
+        if (titular == null) {
+            throw new IllegalArgumentException(
+                    "El titular  no puede ser nulo o esta en blanco porfavor escriba su nombre");
+        }
+        this.numero = numero;
+        this.titular = titular;
+        cuentasAbiertas++;
+    }
+
+    public static int getCuentasAbiertas() {
+        return cuentasAbiertas;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public long getSaldo() {
+        return saldo;
+    }
+
+    public Titular getTitular() {
+        return titular;
+    }
+
+    public void depositar(long valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("No puedes depositar 'nada' , poravor digita un monto correcto");
+        }
+        saldo = valor + saldo;
+    }
+
+    public void retirar(long valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("No puedes retirar 'nada' , poravor digita un monto correcto");
+        }
+        if (valor > saldo) {
+            throw new IllegalArgumentException("Saldo insuficiente. Saldo: $" + saldo + ", retiro: $" + valor);
+        }
+
+        saldo = saldo - valor;
+    }
 
 }
