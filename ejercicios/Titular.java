@@ -35,6 +35,42 @@
 
 public class Titular {
 
-    // Tu código aquí
+    // Parte 1, clase titular privada.
+    private String nombre;
+    private String documento;
+    private String celular;
+
+    // Parte 2, constructor.
+    public Titular(String nombre, String documento) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("Debe ingresar un nombre");
+        }
+        if (documento == null || documento.isBlank()) {
+            throw new IllegalArgumentException("El documento no puede estar vacío");
+        }
+        this.nombre = nombre;
+        this.documento = documento;
+    }
+
+    // Parte 3 getters.
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    // Parte 4, setter.
+    public void setCelular(String celular) {
+        if (celular == null || celular.length() != 10 || !celular.startsWith("3")) {
+            throw new IllegalArgumentException("El celular debe tener 10 dígitos y empezar por 3");
+        }
+        this.celular = celular;
+    }
 
 }
