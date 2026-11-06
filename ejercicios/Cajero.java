@@ -40,5 +40,45 @@
 public class Cajero {
 
     // Tu código aquí
+    public static long leerMonto(String texto) {
+        try {
+            long monto = Long.parseLong(texto);
+
+            // Validación de número menor o igual a cero
+            if (monto <= 0) {
+                throw new IllegalArgumentException("El monto debe ser un número positivo.");
+            }
+
+            return monto;
+
+        } catch (NumberFormatException e) {
+            // Transformamos la excepción del sistema en una de tipo de argumento ilegal con el mensaje exigido
+            throw new IllegalArgumentException("El monto debe ser un número entero: " + texto);
+        }
+    }
+
+
+    public static String retirar(CuentaAhorros cuenta, String textoMonto, boolean cajeroPropio) {
+        try {
+            // 1. Intentamos leer y procesar el monto del texto
+            long montoARetirar = leerMonto(textoMonto);
+
+            // 2. Calculamos el costo transaccional con la clase Tarifas
+            long costoTransaccion = Tarifas.costoRetiro(cajeroPropio);
+
+            // 3. El cobro total a la cuenta incluye el monto solicitado MÁS el costo del servicio
+            long totalDebito = montoARetirar + costoTransaccion;
+
+            // 4. Ejecutamos el débito en la cuenta (puede lanzar IllegalArgumentException por saldo insuficiente)
+            cuenta.retirar(totalDebito);
+
+            // Si llega aquí es porque la transacción fue exitosa
+            return "Retiro exitoso. Nuevo saldo: $" + cuenta.getSaldo();
+
+        } catch (IllegalArgumentException e) {
+            // Atrapamos cualquier error de validación o saldo y devolvemos la respuesta controlada sin romper la app
+            return "Retiro rechazado: " + e.getMessage();
+        }
+    }
 
 }

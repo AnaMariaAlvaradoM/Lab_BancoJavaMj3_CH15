@@ -36,5 +36,36 @@
 public class Titular {
 
     // Tu código aquí
+    private String nombre;
+    private String documento;
+    private String celular;
 
+    public Titular(String nombre, String documento) {
+        if (nombre == null || nombre.trim().isEmpty() || documento == null || documento.trim().isEmpty()){
+            throw new IllegalArgumentException("Los campos nombre y documento no pueden ir vacios");
+        }
+        this.nombre = nombre;
+        this.documento = documento;
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+
+        if (celular == null || !celular.matches("^3\\d{9}$")){
+            throw new IllegalArgumentException("No es un celular valido");
+        }
+        this.celular = celular;
+    }
 }
