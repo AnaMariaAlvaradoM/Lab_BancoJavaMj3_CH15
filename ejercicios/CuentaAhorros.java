@@ -40,6 +40,57 @@
 
 public class CuentaAhorros {
 
-    // Tu código aquí
+    private String numero;
+    private Titular titular;
+    private long saldo = 0;
+    private static int cuentasAbiertas;
 
+    public CuentaAhorros(String numero, Titular titular){
+
+        if(numero == null || numero.isBlank()){
+            throw new IllegalArgumentException("El campo de numero no puede estar vacio");
+        }
+
+        if(titular == null){
+            throw new IllegalArgumentException("El campo de titular no puede estar vacio");
+        }
+        this.numero = numero;
+        this.titular = titular;
+
+        cuentasAbiertas++;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public Titular getTitular() {
+        return titular;
+    }
+
+    public long getSaldo() {
+        return saldo;
+    }
+
+    public static int getCuentasAbiertas(){
+        return cuentasAbiertas;
+    }
+
+    public void depositar(long valor){
+        if(valor <= 0){
+            throw new IllegalArgumentException("El valor no puede ser igual o menor a cero");
+        }
+        this.saldo += valor;
+    }
+
+    public void retirar(long valor){
+        if(valor <= 0){
+            throw new IllegalArgumentException("El valor no puede ser igual o menor a cero");
+        }
+        if(valor > this.saldo){
+            throw new IllegalArgumentException("Saldo insuficiente. Saldo: $" + this.saldo + ", retiro: $" + valor);
+        }
+
+        this.saldo -= valor;
+    }
 }
