@@ -19,8 +19,8 @@ public class PruebaBanco {
         cuenta.retirar(50000);
         System.out.println("Saldo: $" + cuenta.getSaldo());
 
-        // Cdt cdt = new Cdt(1_000_000, 90, 0.09);
-        // System.out.println("Intereses: $" + cdt.calcularIntereses());
+        Cdt cdt = new Cdt(1_000_000, 90, 0.09);
+        System.out.println("Intereses: $" + cdt.calcularIntereses());
 
         // System.out.println("Retiro en otro banco: $" + Tarifas.costoRetiro(false));
 

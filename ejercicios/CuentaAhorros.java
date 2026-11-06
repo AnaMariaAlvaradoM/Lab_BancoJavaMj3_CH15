@@ -49,7 +49,6 @@ public class CuentaAhorros {
         this.numero = numero;
         this.titular = titular;
 
-
         if (numero == null || numero.isBlank()){
             throw new IllegalArgumentException("El número no puede estar vació");
         }
@@ -80,7 +79,7 @@ public class CuentaAhorros {
 
     public void depositar(long valor){
         if (valor <= 0){
-            System.out.println("El valor no puede ser negativo");
+           throw new IllegalArgumentException("El valor no puede ser negativo");
         }else {
             saldo += valor;
         }
