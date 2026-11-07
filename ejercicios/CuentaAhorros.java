@@ -38,8 +38,69 @@
 // Ojo: si Titular no compila, este ejercicio tampoco.
 // ============================================================
 
+
+
 public class CuentaAhorros {
 
     // Tu código aquí
+    private String numero;
+    private Titular titular;
+    private long saldo = 0;
 
-}
+    private static int cuentasAbiertas;
+
+    public CuentaAhorros(String numero, Titular titular) {
+//
+        if (numero == null || numero.isBlank()){
+            throw new IllegalArgumentException("Error: porfavor escribe numero de cuenta");
+        }
+        if (titular == null){
+            throw new IllegalArgumentException("error titular");
+        }
+
+        this.numero = numero;
+        this.titular = titular;
+
+        cuentasAbiertas++;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public Titular getTitular() {
+        return titular;
+    }
+
+    public long getSaldo() {
+        return saldo;
+    }
+
+    public static int getCuentasAbiertas() {
+        return cuentasAbiertas;
+    }
+
+
+    public void depositar(long valor){
+
+        if ( valor <= 0){
+            throw new IllegalArgumentException("El numero tiene que ser mayor a 0");
+        }
+        saldo = saldo + valor;
+    }
+
+
+    public void retirar (long valor){
+        if (valor <= 0){
+            throw new IllegalArgumentException("el valor a retirar no puede ser menor ni igual a 0");
+        }
+        if (valor > saldo){
+            throw new IllegalArgumentException("Saldo insuficiente. Saldo: $" + saldo + ", retiro: $" + valor);
+        }
+
+        saldo = saldo - valor;
+
+        }
+
+    }
+

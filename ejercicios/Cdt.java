@@ -36,8 +36,66 @@
 // Pista: Math.round(...) redondea un double y devuelve un long.
 // ============================================================
 
-public class Cdt {
+public class  Cdt {
 
     // Tu código aquí
 
+    public static final long MONTO_MINIMO = 500_000L;
+    public static final int DIAS_MINIMOS = 30;
+    public static final int DIAS_MAXIMOS = 540;
+
+    private long monto;
+    private int dias;
+    private double tasaAnual;
+
+
+
+
+    public Cdt(long monto, int dias, double tasaAnual) {
+
+        if (monto < MONTO_MINIMO){
+            throw new IllegalArgumentException("monto minimo mayor a 500_000");
+        }
+
+        validarDias(dias);
+
+        if (tasaAnual <= 0 || tasaAnual > 0.2){
+            throw new IllegalArgumentException("tasa anual incorrecta");
+        }
+
+        this.monto = monto;
+        this.dias = dias;
+        this.tasaAnual = tasaAnual;
+    }
+
+    public long getMonto() {
+        return monto;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public double getTasaAnual() {
+        return tasaAnual;
+    }
+
+    public long calcularIntereses(){
+       return Math.round(monto * tasaAnual * dias / 360);
+    }
+
+    public long calcularIntereses(int otrosDias) {
+        validarDias(otrosDias);
+        return Math.round(monto * tasaAnual * otrosDias / 360);
+    }
+
+    public long calcularTotalAlVencimiento(){
+        return monto + calcularIntereses();
+    }
+
+    private void validarDias (int dias){
+        if (dias < DIAS_MINIMOS || dias > DIAS_MAXIMOS){
+            throw new IllegalArgumentException("dias minimos 30, dias maximos 540");
+        }
+    }
 }
