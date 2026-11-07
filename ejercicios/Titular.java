@@ -36,5 +36,38 @@
 public class Titular {
 
     // Tu código aquí
+    private String nombre;
+    private String documento;
+    private String celular;
 
+    public Titular(String nombre, String documento) {
+        if (nombre == null || nombre.isBlank()){
+            throw new IllegalArgumentException("Error sin nombre de titular");
+        }
+        if (documento == null || documento.isBlank()){
+            throw new IllegalArgumentException("Error sin documento del titular");
+        }
+        this.nombre = nombre;
+        this.documento = documento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+
+        if (celular == null || celular.length() < 10  || celular.charAt(0) != '3'){
+            throw new IllegalArgumentException("numero de celular invalido");
+        }
+        this.celular = celular;
+    }
 }
