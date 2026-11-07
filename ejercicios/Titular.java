@@ -36,5 +36,50 @@
 public class Titular {
 
     // Tu código aquí
+    private String nombre;
+    private String documento;
+    private String celular;
+
+    public Titular(String nombre, String documento) {
+        if (nombre == null) {
+            throw new IllegalArgumentException("El nombre no puede ser null");
+        }
+        if (nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre no puede estar en blanco");
+        }
+        if (documento == null) {
+            throw new IllegalArgumentException("El documento no puede ser null");
+        }
+        if (documento.isBlank()) {
+            throw new IllegalArgumentException("El documento no puede estar en blanco");
+        }
+        this.nombre = nombre;
+        this.documento = documento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        if (celular == null) {
+            throw new IllegalArgumentException("El celular no puede ser null");
+        }
+        if (celular.length() != 10) {
+            throw new IllegalArgumentException("El celular debe tener 10 dígitos");
+        }
+        if (!celular.startsWith("3")) {
+            throw new IllegalArgumentException("El celular debe empezar por 3");
+        }
+        this.celular = celular;
+    }
 
 }
