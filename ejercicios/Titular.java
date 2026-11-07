@@ -35,6 +35,39 @@
 
 public class Titular {
 
-    // Tu código aquí
+   private String nombre;
+   private String documento;
+   private String celular;
 
+   public Titular(String nombre, String documento){
+        if(nombre == null || nombre.isBlank()){
+            throw new IllegalArgumentException("El nombre no puede estar vacío ni ser null");
+        }
+        if (documento == null || documento.isBlank()){
+            throw new IllegalArgumentException("El documento no puedes estar vacio ni ser null");
+        }
+        this.nombre = nombre;
+        this.documento = documento;
+   }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        // el codigo !celular.startsWith("3") lo que hace esque se para en la primera posicion y compara si no es 3 da true o false
+        if (celular == null || celular.length() != 10 || !celular.startsWith("3")){
+            throw new IllegalArgumentException("numero null o numero menor a 10 digitos o numero no colombianoa(No inicia por 3)");
+        }
+        // aqui se hace como la parte de si cumplio con la restriccion celular va a tomar ese valor
+        this.celular = celular;
+    }
 }
