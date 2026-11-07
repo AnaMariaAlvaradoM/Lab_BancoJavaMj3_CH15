@@ -41,5 +41,56 @@
 public class CuentaAhorros {
 
     // Tu código aquí
+    private Titular titular;
+    private String numero;
+    private long saldo = 0;
 
+    private static int cuentasAbiertas = 0;
+
+    public CuentaAhorros(String numero, Titular titular) {
+        if (numero == null || numero.isBlank()) {
+            throw new IllegalArgumentException("El numero no puede ser nulo o en blanco.");
+        }
+
+        if (titular == null) {
+            throw  new IllegalArgumentException("El titular no puede ser nulo.");
+        }
+
+        this.titular = titular;
+        this.numero = numero;
+        cuentasAbiertas++;
+    }
+
+    public long getSaldo() {
+        return saldo;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public Titular getTitular() {
+        return titular;
+    }
+
+    public static int getCuentasAbiertas() {
+        return cuentasAbiertas;
+    }
+
+    public void depositar(long valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("El valor no puede ser 0 o negativo.");
+        }
+        saldo+= valor;
+    }
+
+    public void retirar(long valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("El valor no puede ser 0 o negativo.");
+        }
+        if (valor > saldo) {
+            throw new IllegalArgumentException("Saldo insuficiente. Saldo: $" + saldo + ", retiro: $" + valor);
+        }
+        saldo -= valor;
+    }
 }

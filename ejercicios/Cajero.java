@@ -40,5 +40,39 @@
 public class Cajero {
 
     // Tu código aquí
+    public static String retirarDinero(CuentaAhorros cuenta, long valor) {
+        try {
+            cuenta.retirar(valor);
+            return "Retiro exitoso. Nuevo saldo: $" + cuenta.getSaldo();
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+    }
 
+    public static String abrirCdtConCuenta(CuentaAhorros cuenta, long monto, int dias, double tasa) {
+        try {
+            cuenta.retirar(monto);
+            Cdt cdt = new Cdt(monto, dias, tasa);
+            return "CDT abierto con éxito. Saldo actual en cuenta: $" + cuenta.getSaldo();
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+    }
+
+    public static long leerMonto(String textoMonto) {
+        try {
+            return Long.parseLong(textoMonto);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("El monto debe ser un número válido. Llegó: " + textoMonto);
+        }
+    }
+
+    public static String retirarDinero(CuentaAhorros cuenta, String textoValor) {
+        try {
+            long valor = leerMonto(textoValor);
+            return retirarDinero(cuenta, valor);
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+    }
 }
