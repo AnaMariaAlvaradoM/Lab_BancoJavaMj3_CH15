@@ -39,6 +39,38 @@
 
 public class Cajero {
 
-    // Tu código aquí
+    public static long leerMonto(String texto) {
+        try {
+            long monto = Long.parseLong(texto);
 
+            if (monto <= 0) {
+                throw new IllegalArgumentException("El monto debe ser mayor que cero");
+            }
+
+            return monto;
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    "El monto debe ser un número entero: " + texto
+            );
+        }
+    }
+
+    public static String retirar(
+            CuentaAhorros cuenta,
+            String textoMonto,
+            boolean cajeroPropio) {
+
+        try {
+            long monto = leerMonto(textoMonto);
+            long costo = Tarifas.costoRetiro(cajeroPropio);
+
+            cuenta.retirar(monto + costo);
+
+            return "Retiro exitoso. Nuevo saldo: $" + cuenta.getSaldo();
+
+        } catch (IllegalArgumentException e) {
+            return "Retiro rechazado: " + e.getMessage();
+        }
+    }
 }
