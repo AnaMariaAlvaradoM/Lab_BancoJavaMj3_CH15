@@ -35,6 +35,58 @@
 
 public class Titular {
 
-    // Tu código aquí
+    private String nombre;
+    private String documento;
+    private String celular;
+
+
+    public Titular(String nombre, String documento) {
+
+        if (nombre == null || nombre.isBlank()) {
+
+
+            throw new IllegalArgumentException();
+        }
+        ;
+
+
+        if (documento == null || documento.isBlank()) {
+
+
+            throw new IllegalArgumentException();
+
+
+        }
+        ;
+        this.nombre = nombre;
+        this.documento = documento;
+    }
+
+    ;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+
+    public void setCelular(String celular) {
+
+        if (celular == null || celular.length() != 10 || !celular.startsWith("3")) {
+
+            throw new IllegalArgumentException("El celular debe empezar por 3 y tener 10 dígitos");
+        }
+        this.celular = celular;
+    }
+
 
 }
+
+
