@@ -34,7 +34,37 @@
 // ============================================================
 
 public class Titular {
+    private String nombre;
+    private String documento;
+    private String celular;
 
-    // Tu código aquí
+    public Titular(String nombre, String documento) {
+        if (nombre == null || nombre.isBlank()){ //isBlank es mas robusto, puesto que verifica si hay mas espacios en blanco, por ejemplo "   "
+            throw new IllegalArgumentException("El nombre no puede estar vacio");
+        }
+        this.nombre = nombre;
+        if(documento == null || documento.isBlank()){
+            throw new IllegalArgumentException("El documento no puede estar vacio");
+        }
+        this.documento = documento;
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        if (celular == null || celular.isEmpty() || celular.charAt(0) != '3' || celular.length() != 10){
+            throw new IllegalArgumentException("El  celular no es valido");
+        }
+        this.celular = celular;
+    }
 }
