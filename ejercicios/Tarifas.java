@@ -50,7 +50,7 @@ public class Tarifas {
         if (!cajeroPropio) {
             return COSTO_RETIRO_OTRO_BANCO;
         }
-        if (numeroDeRetiro < RETIROS_GRATIS_AL_MES) {
+        if (numeroDeRetiro <= RETIROS_GRATIS_AL_MES) {
             return 0;
         }
         return COSTO_RETIRO_ADICIONAL;
