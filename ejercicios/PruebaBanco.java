@@ -22,8 +22,8 @@ public class PruebaBanco {
         Cdt cdt = new Cdt(1_000_000, 90, 0.09);
          System.out.println("Intereses: $" + cdt.calcularIntereses());
 
-        // System.out.println("Retiro en otro banco: $" + Tarifas.costoRetiro(false));
+         System.out.println("Retiro en otro banco: $" + Tarifas.costoRetiro(false));
 
-        // System.out.println(Cajero.retirar(cuenta, "abc", true));
+         System.out.println(Cajero.retirar(cuenta, "abc", true));
     }
 }
