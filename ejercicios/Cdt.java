@@ -39,5 +39,68 @@
 public class Cdt {
 
     // Tu código aquí
+    public static final long MONTO_MINIMO = 500_000;
+    public static final int DIAS_MINIMOS = 30;
+    public static final int DIAS_MAXIMOS = 540;
 
+    private long monto;
+    private int dias;
+    private double tasaAnual;
+
+    public long getMonto() {
+        return monto;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public double getTasaAnual() {
+        return tasaAnual;
+    }
+
+    public Cdt(long monto, int dias, double tasaAnual) {
+
+        if (monto < MONTO_MINIMO) {
+            throw new IllegalArgumentException();
+        }
+
+        validarDias(dias);
+
+        if (tasaAnual <= 0 || tasaAnual > 0.2) {
+            throw new IllegalArgumentException();
+        }
+
+        this.monto = monto;
+        this.dias = dias;
+        this.tasaAnual = tasaAnual;
+    }
+
+    public long calcularTotalAlVencimiento() {
+
+        return monto + calcularIntereses();
+
+    }
+
+    public long calcularIntereses() {
+
+        return Math.round((double) monto * tasaAnual * dias / 360);
+
+    }
+
+    public long calcularIntereses(int otrosDias) {
+
+        validarDias(otrosDias);
+
+        return Math.round((double) monto * tasaAnual * otrosDias / 360);
+
+    }
+
+    private void validarDias(int dias) {
+
+        if (dias < DIAS_MINIMOS || dias > DIAS_MAXIMOS) {
+            throw new IllegalArgumentException();
+        }
+
+    }
 }

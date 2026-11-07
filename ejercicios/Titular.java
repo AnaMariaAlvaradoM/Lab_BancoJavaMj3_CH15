@@ -74,23 +74,13 @@ public class Titular {
 
     public void setCelular(String celular) {
 
-        if (celular == null) {
+        if (celular == null || celular.length() != 10 || !celular.startsWith("3")) {
 
             throw new IllegalArgumentException();
 
         }
-
-        if (celular.length() != 10) {
-
-            throw new IllegalArgumentException();
-
-        }
-
-        if (!celular.startsWith("3")) {
 
             this.celular = celular;
-
-        }
 
     }
 }
